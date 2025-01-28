@@ -1,0 +1,11 @@
+email_validator==2.2.0
+Faker==35.0.0
+fastapi==0.115.7
+fastapi-pagination==0.12.34
+pydantic==2.10.6
+pytest==8.3.4
+python-dotenv==1.0.1
+requests==2.32.3
+SQLAlchemy==2.0.37
+sqlmodel==0.0.22
+uvicorn==0.34.0
