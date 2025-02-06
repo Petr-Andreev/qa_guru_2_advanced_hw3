@@ -133,6 +133,7 @@ def test_create_user(app_url, create_user_fixture):
     assert fetched_user == created_user
 
 
+# Тест на ошибку 404 на удаленного пользователя
 # Тест на удаление пользователя
 def test_delete_user(app_url, create_user_fixture):
     created_user = create_user_fixture
@@ -181,17 +182,6 @@ def test_delete_invalid_user(app_url, user_id):
 def test_patch_invalid_user(app_url, user_id):
     response = requests.patch(f"{app_url}/api/users/update/{user_id}", json={})
     assert response.status_code in (HTTPStatus.NOT_FOUND, HTTPStatus.UNPROCESSABLE_ENTITY)
-
-
-# Тест на ошибку 404 на удаленного пользователя
-def test_get_deleted_user(app_url, create_user_fixture):
-    created_user = create_user_fixture
-    # Удаляем пользователя
-    response = requests.delete(f"{app_url}/api/users/delete/{created_user['id']}")
-    response.raise_for_status()
-    # Проверяем, что пользователь удален
-    response = requests.get(f"{app_url}/api/users/{created_user['id']}")
-    assert response.status_code == HTTPStatus.NOT_FOUND
 
 
 # Тест на валидность тестовых данных (email, url)
